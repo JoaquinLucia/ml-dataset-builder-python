@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>controlador &mdash; documentación de Sistema ABMC - Mercado Automotor - 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36c4ab74"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sistema ABMC - Mercado Automotor
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../conexion.html">conexion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validaciones.html">validaciones module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sistema ABMC - Mercado Automotor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">controlador</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para controlador</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Módulo Controlador.</span>
+<span class="sd">Actúa como intermediario entre la Vista y el Modelo,</span>
+<span class="sd">aplicando las validaciones antes de interactuar con la base de datos.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">modelo</span><span class="w"> </span><span class="kn">import</span> <span class="n">GestorAutos</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">validaciones</span><span class="w"> </span><span class="kn">import</span> <span class="n">Validador</span><span class="p">,</span> <span class="n">ErrorValidacion</span>
+
+
+<div class="viewcode-block" id="Controlador">
+<a class="viewcode-back" href="../controlador.html#controlador.Controlador">[documentos]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Controlador</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase que maneja la lógica de la aplicación y el flujo de datos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor de la clase Controlador. Inicializa el modelo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span> <span class="o">=</span> <span class="n">GestorAutos</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Controlador.procesar_alta">
+<a class="viewcode-back" href="../controlador.html#controlador.Controlador.procesar_alta">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">procesar_alta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">anio</span><span class="p">,</span> <span class="n">kilometraje</span><span class="p">,</span> <span class="n">traccion</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">,</span> <span class="n">cilindrada</span><span class="p">,</span> <span class="n">valvulas</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Valida los datos y si son correctos, ordena al modelo guardar un nuevo vehículo</span>
+
+<span class="sd">        :param titulo: ID único del vehículo.</span>
+<span class="sd">        :type titulo: str</span>
+<span class="sd">        :param descripcion: Breve descripción.</span>
+<span class="sd">        :type descripcion: str</span>
+<span class="sd">        :param marca: Marca del fabricante.</span>
+<span class="sd">        :type marca: str</span>
+<span class="sd">        :param modelo: Modelo del vehículo.</span>
+<span class="sd">        :type modelo: str</span>
+<span class="sd">        :param anio: Año de fabricación.</span>
+<span class="sd">        :type anio: int</span>
+<span class="sd">        :param kilometraje: Kilometraje actual.</span>
+<span class="sd">        :type kilometraje: int</span>
+<span class="sd">        :param traccion: Tipo de tracción.</span>
+<span class="sd">        :type traccion: str</span>
+<span class="sd">        :param precio_usd: Precio en dólares.</span>
+<span class="sd">        :type precio_usd: float</span>
+<span class="sd">        :param cilindrada: Cilindrada en litros.</span>
+<span class="sd">        :type cilindrada: float</span>
+<span class="sd">        :param valvulas: Cantidad de válvulas del motor.</span>
+<span class="sd">        :type valvulas: int</span>
+<span class="sd">        :return: Diccionario con el estado de la operación y un mensaje.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Pasamos por todas las validaciones</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_titulo</span><span class="p">(</span><span class="n">titulo</span><span class="p">)</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_anio</span><span class="p">(</span><span class="n">anio</span><span class="p">)</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_positivos</span><span class="p">(</span><span class="n">kilometraje</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">)</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_cilindrada</span><span class="p">(</span><span class="n">cilindrada</span><span class="p">)</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_valvulas</span><span class="p">(</span><span class="n">valvulas</span><span class="p">)</span>
+
+            <span class="c1"># Si pasó los filtros, mandamos a guardar</span>
+            <span class="n">exito</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">alta_auto</span><span class="p">(</span>
+                <span class="n">titulo</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">anio</span><span class="p">,</span> <span class="n">kilometraje</span><span class="p">,</span> <span class="n">traccion</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">,</span> <span class="n">cilindrada</span><span class="p">,</span> <span class="n">valvulas</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Devolvemos un diccionario para la vista</span>
+            <span class="k">if</span> <span class="n">exito</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;agregado&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="s2">&quot;Vehículo agregado correctamente.&quot;</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="s2">&quot;No se pudo guardar.&quot;</span><span class="p">}</span>
+
+        <span class="k">except</span> <span class="n">ErrorValidacion</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Error inesperado del sistema: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Controlador.procesar_consulta">
+<a class="viewcode-back" href="../controlador.html#controlador.Controlador.procesar_consulta">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">procesar_consulta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Solicita al modelo todos los registros guardados.</span>
+
+<span class="sd">        :return: Diccionario con el estado y los datos recuperados.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">registros</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">consultar_autos</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;exito&quot;</span><span class="p">,</span> <span class="s2">&quot;datos&quot;</span><span class="p">:</span> <span class="n">registros</span><span class="p">}</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Error al consultar la base de datos: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Controlador.procesar_baja">
+<a class="viewcode-back" href="../controlador.html#controlador.Controlador.procesar_baja">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">procesar_baja</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Valida el ID y ordena al modelo borrar el registro correspondiente.</span>
+
+<span class="sd">        :param titulo: ID único del vehículo a borrar.</span>
+<span class="sd">        :type titulo: str</span>
+<span class="sd">        :return: Diccionario con el estado de la operación y un mensaje.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Pasamos el ID por nuestra Regex antes de enviarlo a la base de datos</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_titulo</span><span class="p">(</span><span class="n">titulo</span><span class="p">)</span>
+            
+            <span class="n">exito</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">borrar_auto</span><span class="p">(</span><span class="n">titulo</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">exito</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;exito&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="s2">&quot;Vehículo eliminado del dataset correctamente.&quot;</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="s2">&quot;No se pudo eliminar. ¿Verificaste que el código exista?&quot;</span><span class="p">}</span>
+                
+        <span class="k">except</span> <span class="n">ErrorValidacion</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Atrapamos el error si el usuario puso espacios o caracteres raros</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Error inesperado del sistema: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Controlador.procesar_modificacion">
+<a class="viewcode-back" href="../controlador.html#controlador.Controlador.procesar_modificacion">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">procesar_modificacion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">anio</span><span class="p">,</span> <span class="n">kilometraje</span><span class="p">,</span> <span class="n">traccion</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">,</span> <span class="n">cilindrada</span><span class="p">,</span> <span class="n">valvulas</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Valida los datos nuevos y ordena al modelo actualizar el registro.</span>
+
+<span class="sd">        :param titulo: ID único del vehículo a modificar.</span>
+<span class="sd">        :type titulo: str</span>
+<span class="sd">        :param descripcion: Nueva descripción.</span>
+<span class="sd">        :type descripcion: str</span>
+<span class="sd">        :param marca: Nueva marca.</span>
+<span class="sd">        :type marca: str</span>
+<span class="sd">        :param modelo: Nuevo modelo.</span>
+<span class="sd">        :type modelo: str</span>
+<span class="sd">        :param anio: Nuevo año.</span>
+<span class="sd">        :type anio: int</span>
+<span class="sd">        :param kilometraje: Nuevo kilometraje.</span>
+<span class="sd">        :type kilometraje: int</span>
+<span class="sd">        :param traccion: Nueva tracción.</span>
+<span class="sd">        :type traccion: str</span>
+<span class="sd">        :param precio_usd: Nuevo precio.</span>
+<span class="sd">        :type precio_usd: float</span>
+<span class="sd">        :param cilindrada: Nueva cilindrada.</span>
+<span class="sd">        :type cilindrada: float</span>
+<span class="sd">        :param valvulas: Nueva cantidad de válvulas.</span>
+<span class="sd">        :type valvulas: int</span>
+<span class="sd">        :return: Diccionario con el estado de la operación y un mensaje.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Reutilizamos las validaciones</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_titulo</span><span class="p">(</span><span class="n">titulo</span><span class="p">)</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_anio</span><span class="p">(</span><span class="n">anio</span><span class="p">)</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_positivos</span><span class="p">(</span><span class="n">kilometraje</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">)</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_cilindrada</span><span class="p">(</span><span class="n">cilindrada</span><span class="p">)</span>
+            <span class="n">Validador</span><span class="o">.</span><span class="n">validar_valvulas</span><span class="p">(</span><span class="n">valvulas</span><span class="p">)</span>
+            
+            <span class="n">exito</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">modificar_auto</span><span class="p">(</span>
+                <span class="n">titulo</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">anio</span><span class="p">,</span> <span class="n">kilometraje</span><span class="p">,</span> <span class="n">traccion</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">,</span> <span class="n">cilindrada</span><span class="p">,</span> <span class="n">valvulas</span>
+            <span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">exito</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;exito&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="s2">&quot;Vehículo actualizado correctamente.&quot;</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="s2">&quot;No se pudo modificar. ¿El código es correcto?&quot;</span><span class="p">}</span>
+                
+        <span class="k">except</span> <span class="n">ErrorValidacion</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;estado&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;mensaje&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Error inesperado: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Joaquin Lucia.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

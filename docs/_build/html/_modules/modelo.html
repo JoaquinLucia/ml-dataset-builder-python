@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modelo &mdash; documentación de ML-Dataset Builder - 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36c4ab74"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ML-Dataset Builder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../conexion.html">conexion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validaciones.html">validaciones module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ML-Dataset Builder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">modelo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para modelo</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Módulo de gestión de datos (Modelo).</span>
+<span class="sd">Contiene la clase GestorAutos que maneja las operaciones CRUD</span>
+<span class="sd">(Crear, Leer, Actualizar, Borrar) conectándose a la base de datos SQLite3.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">conexion</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConexionBD</span>
+
+
+<div class="viewcode-block" id="GestorAutos">
+<a class="viewcode-back" href="../modelo.html#modelo.GestorAutos">[documentos]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GestorAutos</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase que representa el modelo de datos para los vehículos.</span>
+<span class="sd">    Maneja la creación de la tabla y las transacciones.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Inicializa la base y crea la tabla.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">ConexionBD</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_tabla</span><span class="p">()</span>
+
+<div class="viewcode-block" id="GestorAutos.crear_tabla">
+<a class="viewcode-back" href="../modelo.html#modelo.GestorAutos.crear_tabla">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">crear_tabla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Crea la tabla &#39;registro_autos&#39; si no existe, definiendo</span>
+<span class="sd">        la estructura y tipos de datos de todas las columnas.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">conectar</span><span class="p">()</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            CREATE TABLE IF NOT EXISTS registro_autos (</span>
+<span class="s2">                id INTEGER PRIMARY KEY AUTOINCREMENT,</span>
+<span class="s2">                titulo TEXT NOT NULL UNIQUE,</span>
+<span class="s2">                descripcion TEXT NOT NULL,</span>
+<span class="s2">                marca TEXT NOT NULL,</span>
+<span class="s2">                modelo TEXT NOT NULL,</span>
+<span class="s2">                anio INTEGER NOT NULL,</span>
+<span class="s2">                kilometraje INTEGER NOT NULL,</span>
+<span class="s2">                traccion TEXT NOT NULL,</span>
+<span class="s2">                precio_usd REAL NOT NULL,</span>
+<span class="s2">                cilindrada REAL NOT NULL,</span>
+<span class="s2">                valvulas INTEGER NOT NULL</span>
+<span class="s2">            )</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al crear la tabla: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">desconectar</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GestorAutos.alta_auto">
+<a class="viewcode-back" href="../modelo.html#modelo.GestorAutos.alta_auto">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">alta_auto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">anio</span><span class="p">,</span> <span class="n">kilometraje</span><span class="p">,</span> <span class="n">traccion</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">,</span> <span class="n">cilindrada</span><span class="p">,</span> <span class="n">valvulas</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inserta un nuevo vehículo en la base de datos.</span>
+
+<span class="sd">        :param titulo: ID único alfanumérico del vehículo.</span>
+<span class="sd">        :type titulo: str</span>
+<span class="sd">        :param descripcion: Breve detalle del estado del auto.</span>
+<span class="sd">        :type descripcion: str</span>
+<span class="sd">        :param marca: Marca del fabricante.</span>
+<span class="sd">        :type marca: str</span>
+<span class="sd">        :param modelo: Modelo específico.</span>
+<span class="sd">        :type modelo: str</span>
+<span class="sd">        :param anio: Año de fabricación.</span>
+<span class="sd">        :type anio: int</span>
+<span class="sd">        :param kilometraje: Kilómetros recorridos.</span>
+<span class="sd">        :type kilometraje: int</span>
+<span class="sd">        :param traccion: Tipo de tracción (Delantera, Trasera, Integral).</span>
+<span class="sd">        :type traccion: str</span>
+<span class="sd">        :param precio_usd: Valor del vehículo en dólares.</span>
+<span class="sd">        :type precio_usd: float</span>
+<span class="sd">        :param cilindrada: Capacidad del motor en litros.</span>
+<span class="sd">        :type cilindrada: float</span>
+<span class="sd">        :param valvulas: Cantidad total de válvulas del motor.</span>
+<span class="sd">        :type valvulas: int</span>
+<span class="sd">        :return: True si se guardó correctamente, False en caso de error.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">conectar</span><span class="p">()</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            INSERT INTO registro_autos </span>
+<span class="s2">            (titulo, descripcion, marca, modelo, anio, kilometraje, traccion, precio_usd, cilindrada, valvulas) </span>
+<span class="s2">            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">anio</span><span class="p">,</span> <span class="n">kilometraje</span><span class="p">,</span> <span class="n">traccion</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">,</span> <span class="n">cilindrada</span><span class="p">,</span> <span class="n">valvulas</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vehículo &#39;</span><span class="si">{</span><span class="n">titulo</span><span class="si">}</span><span class="s2">&#39; guardado en el dataset con éxito.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al guardar el vehículo: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">desconectar</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="GestorAutos.consultar_autos">
+<a class="viewcode-back" href="../modelo.html#modelo.GestorAutos.consultar_autos">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">consultar_autos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Consulta y devuelve todos los registros guardados en la tabla.</span>
+
+<span class="sd">        :return: Lista de tuplas con los datos de cada vehículo.</span>
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">conectar</span><span class="p">()</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM registro_autos&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+            <span class="n">registros</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">registros</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al consultar la base de datos: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">desconectar</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GestorAutos.borrar_auto">
+<a class="viewcode-back" href="../modelo.html#modelo.GestorAutos.borrar_auto">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">borrar_auto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Elimina un vehículo de la base de datos usando su ID único (título).</span>
+
+<span class="sd">        :param titulo: ID único del vehículo a eliminar.</span>
+<span class="sd">        :type titulo: str</span>
+<span class="sd">        :return: True si se eliminó correctamente, False en caso de error.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">conectar</span><span class="p">()</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM registro_autos WHERE titulo = ?&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="p">(</span><span class="n">titulo</span><span class="p">,))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vehículo &#39;</span><span class="si">{</span><span class="n">titulo</span><span class="si">}</span><span class="s2">&#39; eliminado correctamente.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al intentar borrar el vehículo: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">desconectar</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GestorAutos.modificar_auto">
+<a class="viewcode-back" href="../modelo.html#modelo.GestorAutos.modificar_auto">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modificar_auto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo_buscar</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">anio</span><span class="p">,</span> <span class="n">kilometraje</span><span class="p">,</span> <span class="n">traccion</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">,</span> <span class="n">cilindrada</span><span class="p">,</span> <span class="n">valvulas</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modifica los datos de un vehículo existente filtrando por su ID único.</span>
+
+<span class="sd">        :param titulo_buscar: El ID único del vehículo que se desea actualizar.</span>
+<span class="sd">        :type titulo_buscar: str</span>
+<span class="sd">        :param descripcion: Nueva descripción.</span>
+<span class="sd">        :type descripcion: str</span>
+<span class="sd">        :param marca: Nueva marca.</span>
+<span class="sd">        :type marca: str</span>
+<span class="sd">        :param modelo: Nuevo modelo.</span>
+<span class="sd">        :type modelo: str</span>
+<span class="sd">        :param anio: Nuevo año.</span>
+<span class="sd">        :type anio: int</span>
+<span class="sd">        :param kilometraje: Nuevo kilometraje.</span>
+<span class="sd">        :type kilometraje: int</span>
+<span class="sd">        :param traccion: Nueva tracción.</span>
+<span class="sd">        :type traccion: str</span>
+<span class="sd">        :param precio_usd: Nuevo precio.</span>
+<span class="sd">        :type precio_usd: float</span>
+<span class="sd">        :param cilindrada: Nueva cilindrada.</span>
+<span class="sd">        :type cilindrada: float</span>
+<span class="sd">        :param valvulas: Nueva cantidad de válvulas.</span>
+<span class="sd">        :type valvulas: int</span>
+<span class="sd">        :return: True si se actualizó correctamente, False en caso de error.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">conectar</span><span class="p">()</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            UPDATE registro_autos </span>
+<span class="s2">            SET descripcion=?, marca=?, modelo=?, anio=?, kilometraje=?, traccion=?, precio_usd=?, cilindrada=?, valvulas=?</span>
+<span class="s2">            WHERE titulo=?</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="p">(</span><span class="n">descripcion</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">anio</span><span class="p">,</span> <span class="n">kilometraje</span><span class="p">,</span> <span class="n">traccion</span><span class="p">,</span> <span class="n">precio_usd</span><span class="p">,</span> <span class="n">cilindrada</span><span class="p">,</span> <span class="n">valvulas</span><span class="p">,</span> <span class="n">titulo_buscar</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vehículo &#39;</span><span class="si">{</span><span class="n">titulo_buscar</span><span class="si">}</span><span class="s2">&#39; actualizado correctamente.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al modificar el vehículo: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">desconectar</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Joaquin.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

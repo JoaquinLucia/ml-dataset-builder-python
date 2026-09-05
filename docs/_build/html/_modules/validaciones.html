@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>validaciones &mdash; documentación de ML-Dataset Builder - 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36c4ab74"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ML-Dataset Builder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../conexion.html">conexion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validaciones.html">validaciones module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ML-Dataset Builder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">validaciones</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para validaciones</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Módulo de validaciones.</span>
+<span class="sd">Contiene las reglas para asegurar la integridad de los datos</span>
+<span class="sd">antes de ser guardados en la base de datos.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+
+<div class="viewcode-block" id="ErrorValidacion">
+<a class="viewcode-back" href="../validaciones.html#validaciones.ErrorValidacion">[documentos]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ErrorValidacion</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Excepción personalizada lanzada cuando un campo no cumple</span>
+<span class="sd">    con las reglas establecidas</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="Validador">
+<a class="viewcode-back" href="../validaciones.html#validaciones.Validador">[documentos]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Validador</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase con metodos que validan el correcto ingreso de los valores para el negocio</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Validador.validar_titulo">
+<a class="viewcode-back" href="../validaciones.html#validaciones.Validador.validar_titulo">[documentos]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validar_titulo</span><span class="p">(</span><span class="n">titulo</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Valida que el título contenga únicamente caracteres alfanuméricos.</span>
+
+<span class="sd">        :param titulo: El código o ID único del vehículo.</span>
+<span class="sd">        :type titulo: str</span>
+<span class="sd">        :raises ErrorValidacion: Si el título contiene espacios o caracteres especiales.</span>
+<span class="sd">        :return: True si la validación es exitosa.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">patron</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;^[A-Za-z0-9]+$&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">patron</span><span class="p">,</span> <span class="n">titulo</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ErrorValidacion</span><span class="p">(</span><span class="s2">&quot;El título es inválido. Solo caracteres alfanuméricos (letras y números), sin espacios.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="Validador.validar_anio">
+<a class="viewcode-back" href="../validaciones.html#validaciones.Validador.validar_anio">[documentos]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validar_anio</span><span class="p">(</span><span class="n">anio</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Valida que el año del vehículo se encuentre dentro de un rango lógico.</span>
+
+<span class="sd">        :param anio: Año de fabricación del vehículo.</span>
+<span class="sd">        :type anio: int</span>
+<span class="sd">        :raises ErrorValidacion: Si el año es menor a 1930 o mayor a 2026.</span>
+<span class="sd">        :return: True si la validación es exitosa.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">1930</span> <span class="o">&lt;=</span> <span class="n">anio</span> <span class="o">&lt;=</span> <span class="mi">2026</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ErrorValidacion</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El año </span><span class="si">{</span><span class="n">anio</span><span class="si">}</span><span class="s2"> es incorrecto. Debe estar entre 1930 y 2026.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="Validador.validar_positivos">
+<a class="viewcode-back" href="../validaciones.html#validaciones.Validador.validar_positivos">[documentos]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validar_positivos</span><span class="p">(</span><span class="n">kilometraje</span><span class="p">,</span> <span class="n">precio</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Valida que los valores numéricos como kilometraje y precio no sean negativos.</span>
+
+<span class="sd">        :param kilometraje: Kilómetros recorridos por el vehículo.</span>
+<span class="sd">        :type kilometraje: int</span>
+<span class="sd">        :param precio: Valor del vehículo en dólares.</span>
+<span class="sd">        :type precio: float</span>
+<span class="sd">        :raises ErrorValidacion: Si alguno de los valores es menor a cero.</span>
+<span class="sd">        :return: True si la validación es exitosa.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">kilometraje</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ErrorValidacion</span><span class="p">(</span><span class="s2">&quot;El kilometraje no puede ser un valor negativo.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">precio</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ErrorValidacion</span><span class="p">(</span><span class="s2">&quot;El precio no puede ser un valor negativo.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="Validador.validar_cilindrada">
+<a class="viewcode-back" href="../validaciones.html#validaciones.Validador.validar_cilindrada">[documentos]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validar_cilindrada</span><span class="p">(</span><span class="n">cilindrada</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Valida que la cilindrada esté expresada en litros (ej: 1.6 o 2.0)</span>
+<span class="sd">        y no en centímetros cúbicos (ej: 1600).</span>
+
+<span class="sd">        :param cilindrada: Cilindrada del motor.</span>
+<span class="sd">        :type cilindrada: float</span>
+<span class="sd">        :raises ErrorValidacion: Si el valor está fuera del rango lógico (0.5 a 15.0).</span>
+<span class="sd">        :return: True si la validación es exitosa.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">&lt;=</span> <span class="n">cilindrada</span> <span class="o">&lt;=</span> <span class="mf">15.0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ErrorValidacion</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La cilindrada </span><span class="si">{</span><span class="n">cilindrada</span><span class="si">}</span><span class="s2"> es inválida. Ingresala en litros (ej: 1.6), no en cm3.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="Validador.validar_valvulas">
+<a class="viewcode-back" href="../validaciones.html#validaciones.Validador.validar_valvulas">[documentos]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validar_valvulas</span><span class="p">(</span><span class="n">valvulas</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Valida que la cantidad de válvulas sea un número lógico para un motor</span>
+<span class="sd">        y que sea un número par.</span>
+
+<span class="sd">        :param valvulas: Cantidad total de válvulas del vehículo.</span>
+<span class="sd">        :type valvulas: int</span>
+<span class="sd">        :raises ErrorValidacion: Si el valor es inferior a 2, mayor a 64 o impar.</span>
+<span class="sd">        :return: True si la validación es exitosa.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">valvulas</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">valvulas</span> <span class="o">&gt;</span> <span class="mi">64</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ErrorValidacion</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La cantidad de válvulas (</span><span class="si">{</span><span class="n">valvulas</span><span class="si">}</span><span class="s2">) es incorrecta para un motor estándar.&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Verificamos que el número sea par</span>
+        <span class="k">if</span> <span class="n">valvulas</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ErrorValidacion</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La cantidad de válvulas (</span><span class="si">{</span><span class="n">valvulas</span><span class="si">}</span><span class="s2">) debe ser un número par (ej: 8, 16, 20).&quot;</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="kc">True</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Joaquin.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

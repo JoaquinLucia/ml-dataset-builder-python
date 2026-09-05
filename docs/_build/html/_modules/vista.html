@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vista &mdash; documentación de Sistema ABMC - Mercado Automotor - 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36c4ab74"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sistema ABMC - Mercado Automotor
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../conexion.html">conexion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../validaciones.html">validaciones module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sistema ABMC - Mercado Automotor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">vista</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para vista</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Módulo de la Interfaz Gráfica (Vista).</span>
+<span class="sd">Se encarga de dibujar la ventana, capturar los datos del usuario</span>
+<span class="sd">y enviarlos al controlador, cumpliendo con el patrón MVC.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ttk</span><span class="p">,</span> <span class="n">messagebox</span>
+
+
+<div class="viewcode-block" id="VistaApp">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp">[documentos]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">VistaApp</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase principal de la interfaz gráfica de usuario construida con Tkinter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ventana_principal</span><span class="p">,</span> <span class="n">controlador</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor de la Vista. Configura la ventana y dibuja los elementos.</span>
+
+<span class="sd">        :param ventana_principal: Instancia raíz de Tkinter (tk.Tk()).</span>
+<span class="sd">        :type ventana_principal: tk.Tk</span>
+<span class="sd">        :param controlador: Instancia del Controlador para enviar/recibir datos.</span>
+<span class="sd">        :type controlador: Controlador</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span> <span class="o">=</span> <span class="n">ventana_principal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span> <span class="o">=</span> <span class="n">controlador</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Sistema ABMC — Gestión de Mercado Automotor&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;900x650&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">padx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># --- Título Principal ---</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Ingreso de Datos al Dataset&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="s2">&quot;bold&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+        <span class="c1"># --- Variables de Tkinter ---</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_titulo</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_desc</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_marca</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_modelo</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_anio</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_km</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_traccion</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;Trasera&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_precio</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_cilindrada</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_valvulas</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+
+        <span class="c1"># --- Creación del Formulario ---</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_campo</span><span class="p">(</span><span class="s2">&quot;ID Único (Ej: PEUGEOT206XS):&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_titulo</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_campo</span><span class="p">(</span><span class="s2">&quot;Descripción (Condiciones del auto, detalles etc):&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_desc</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_campo</span><span class="p">(</span><span class="s2">&quot;Marca:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_marca</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_campo</span><span class="p">(</span><span class="s2">&quot;Modelo:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_modelo</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_campo</span><span class="p">(</span><span class="s2">&quot;Año (Sin puntos, ej 2015):&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_anio</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_campo</span><span class="p">(</span><span class="s2">&quot;Kilometraje (Sin puntos, ej 100000):&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_km</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Tracción:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">combo_traccion</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">var_traccion</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Delantera&quot;</span><span class="p">,</span> <span class="s2">&quot;Trasera&quot;</span><span class="p">,</span> <span class="s2">&quot;Integral&quot;</span><span class="p">],</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span>
+        <span class="n">combo_traccion</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;ew&quot;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_campo</span><span class="p">(</span><span class="s2">&quot;Precio ($USD):&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_precio</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_campo</span><span class="p">(</span><span class="s2">&quot;Cilindrada (Ej: 1.6):&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_cilindrada</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_campo</span><span class="p">(</span><span class="s2">&quot;Válvulas (Ej: 16):&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_valvulas</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># --- Botones del CRUD ---</span>
+        <span class="n">frame_botones</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">)</span>
+        <span class="n">frame_botones</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">frame_botones</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Guardar (Alta)&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">enviar_datos</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">frame_botones</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Modificar&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modificar_datos</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">frame_botones</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Borrar (Baja)&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">borrar_datos</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">frame_botones</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Limpiar Campos&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">limpiar_campos</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1">#Treeview</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Treeview</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Titulo&quot;</span><span class="p">,</span> <span class="s2">&quot;Marca&quot;</span><span class="p">,</span> <span class="s2">&quot;Modelo&quot;</span><span class="p">,</span> <span class="s2">&quot;Año&quot;</span><span class="p">,</span> <span class="s2">&quot;KM&quot;</span><span class="p">,</span> <span class="s2">&quot;Precio&quot;</span><span class="p">),</span> <span class="n">show</span><span class="o">=</span><span class="s1">&#39;headings&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;ID BD&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s2">&quot;Titulo&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Código (ID Único)&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s2">&quot;Marca&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Marca&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s2">&quot;Modelo&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Modelo&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s2">&quot;Año&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Año&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s2">&quot;KM&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;KM&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s2">&quot;Precio&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Precio (USD)&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nsew&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;ButtonRelease-1&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">seleccionar_fila</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actualizar_tabla</span><span class="p">()</span>
+
+<div class="viewcode-block" id="VistaApp.crear_campo">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp.crear_campo">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">crear_campo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto_label</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">fila</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Método auxiliar para generar etiquetas y campos de entrada</span>
+
+<span class="sd">        :param texto_label: Texto que se mostrará al lado del campo.</span>
+<span class="sd">        :type texto_label: str</span>
+<span class="sd">        :param variable: Variable de Tkinter asociada al campo.</span>
+<span class="sd">        :type variable: tk.StringVar</span>
+<span class="sd">        :param fila: Fila del grid donde se posicionará.</span>
+<span class="sd">        :type fila: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">texto_label</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">fila</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">variable</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">fila</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;ew&quot;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VistaApp.obtener_datos_formulario">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp.obtener_datos_formulario">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obtener_datos_formulario</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extrae y convierte los datos capturados en las variables de Tkinter.</span>
+
+<span class="sd">        :return: Tupla con los datos convertidos a su tipo correspondiente, o None si hay error.</span>
+<span class="sd">        :rtype: tuple or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1. Frenamos el proceso si los campos de texto clave están vacíos</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_titulo</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_marca</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_modelo</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Faltan datos. El código, marca y modelo son obligatorios.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># 2. Si hay texto, intentamos convertir los números</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">var_titulo</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">var_desc</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">var_marca</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">var_modelo</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var_anio</span><span class="o">.</span><span class="n">get</span><span class="p">()),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var_km</span><span class="o">.</span><span class="n">get</span><span class="p">()),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">var_traccion</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+                <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var_precio</span><span class="o">.</span><span class="n">get</span><span class="p">()),</span>
+                <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var_cilindrada</span><span class="o">.</span><span class="n">get</span><span class="p">()),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var_valvulas</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error de Formato&quot;</span><span class="p">,</span> <span class="s2">&quot;Año, Kilometraje, Precio, Cilindrada y Válvulas deben ser números válidos.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="VistaApp.enviar_datos">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp.enviar_datos">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">enviar_datos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lógica para el botón Guardar (Alta de registro).&quot;&quot;&quot;</span>
+        <span class="n">datos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obtener_datos_formulario</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">datos</span><span class="p">:</span>
+            <span class="n">respuesta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">procesar_alta</span><span class="p">(</span><span class="o">*</span><span class="n">datos</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">manejar_respuesta</span><span class="p">(</span><span class="n">respuesta</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VistaApp.modificar_datos">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp.modificar_datos">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modificar_datos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lógica para el botón Modificar (Actualización de registro).&quot;&quot;&quot;</span>
+        <span class="n">datos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obtener_datos_formulario</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">datos</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span><span class="s2">&quot;Confirmar&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;¿Estás seguro de modificar el registro &#39;</span><span class="si">{</span><span class="n">datos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;?&quot;</span><span class="p">):</span>
+                <span class="n">respuesta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">procesar_modificacion</span><span class="p">(</span><span class="o">*</span><span class="n">datos</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">manejar_respuesta</span><span class="p">(</span><span class="n">respuesta</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VistaApp.borrar_datos">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp.borrar_datos">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">borrar_datos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lógica para el botón Borrar (Baja de registro).&quot;&quot;&quot;</span>
+        <span class="n">titulo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_titulo</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">titulo</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor, ingresá o seleccioná el Código (ID Único) que querés borrar.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        
+        <span class="k">if</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span><span class="s2">&quot;Confirmar&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;¿Estás seguro de ELIMINAR el registro &#39;</span><span class="si">{</span><span class="n">titulo</span><span class="si">}</span><span class="s2">&#39;?&quot;</span><span class="p">):</span>
+            <span class="n">respuesta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">procesar_baja</span><span class="p">(</span><span class="n">titulo</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">manejar_respuesta</span><span class="p">(</span><span class="n">respuesta</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VistaApp.manejar_respuesta">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp.manejar_respuesta">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">manejar_respuesta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">respuesta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Muestra un cuadro de diálogo basado en la respuesta del controlador.</span>
+
+<span class="sd">        :param respuesta: Diccionario con el estado (&#39;exito&#39; o &#39;error&#39;) y el mensaje.</span>
+<span class="sd">        :type respuesta: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">respuesta</span><span class="p">[</span><span class="s2">&quot;estado&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;exito&quot;</span><span class="p">,</span> <span class="s2">&quot;agregado&quot;</span><span class="p">]:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="n">respuesta</span><span class="p">[</span><span class="s2">&quot;mensaje&quot;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">limpiar_campos</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">actualizar_tabla</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">respuesta</span><span class="p">[</span><span class="s2">&quot;mensaje&quot;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="VistaApp.actualizar_tabla">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp.actualizar_tabla">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">actualizar_tabla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pide los datos frescos al controlador y redibuja las filas en el Treeview.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">get_children</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
+            
+        <span class="n">respuesta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">procesar_consulta</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="n">respuesta</span><span class="p">[</span><span class="s2">&quot;estado&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;exito&quot;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">respuesta</span><span class="p">[</span><span class="s2">&quot;datos&quot;</span><span class="p">]:</span>
+                <span class="c1"># Mostramos ID, Titulo, Marca, Modelo, Año, KM y Precio</span>
+                <span class="n">valores_mostrar</span> <span class="o">=</span> <span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">valores_mostrar</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VistaApp.seleccionar_fila">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp.seleccionar_fila">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">seleccionar_fila</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evento que se dispara al hacer clic en una fila del Treeview.</span>
+<span class="sd">        Carga el Código (ID Único) en el formulario para facilitar su edición o borrado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">item_seleccionado</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">focus</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">item_seleccionado</span><span class="p">:</span>
+            <span class="n">valores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">item_seleccionado</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">valores</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">var_titulo</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">valores</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+
+                
+<div class="viewcode-block" id="VistaApp.limpiar_campos">
+<a class="viewcode-back" href="../vista.html#vista.VistaApp.limpiar_campos">[documentos]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">limpiar_campos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Vacía todos los campos de texto del formulario y resetea opciones.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_titulo</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_desc</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_marca</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_modelo</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_anio</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_km</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_precio</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_cilindrada</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_valvulas</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_traccion</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;Trasera&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Joaquin Lucia.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

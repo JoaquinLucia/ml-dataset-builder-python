@@ -1,0 +1,214 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vista module &mdash; documentación de Sistema ABMC - Mercado Automotor - 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=36c4ab74"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="validaciones module" href="validaciones.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Sistema ABMC - Mercado Automotor
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="conexion.html">conexion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validaciones.html">validaciones module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">vista module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vista.VistaApp"><code class="docutils literal notranslate"><span class="pre">VistaApp</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vista.VistaApp.actualizar_tabla"><code class="docutils literal notranslate"><span class="pre">VistaApp.actualizar_tabla()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vista.VistaApp.borrar_datos"><code class="docutils literal notranslate"><span class="pre">VistaApp.borrar_datos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vista.VistaApp.crear_campo"><code class="docutils literal notranslate"><span class="pre">VistaApp.crear_campo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vista.VistaApp.enviar_datos"><code class="docutils literal notranslate"><span class="pre">VistaApp.enviar_datos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vista.VistaApp.limpiar_campos"><code class="docutils literal notranslate"><span class="pre">VistaApp.limpiar_campos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vista.VistaApp.manejar_respuesta"><code class="docutils literal notranslate"><span class="pre">VistaApp.manejar_respuesta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vista.VistaApp.modificar_datos"><code class="docutils literal notranslate"><span class="pre">VistaApp.modificar_datos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vista.VistaApp.obtener_datos_formulario"><code class="docutils literal notranslate"><span class="pre">VistaApp.obtener_datos_formulario()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vista.VistaApp.seleccionar_fila"><code class="docutils literal notranslate"><span class="pre">VistaApp.seleccionar_fila()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sistema ABMC - Mercado Automotor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">vista module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/vista.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-vista">
+<span id="vista-module"></span><h1>vista module<a class="headerlink" href="#module-vista" title="Link to this heading"></a></h1>
+<p>Módulo de la Interfaz Gráfica (Vista).
+Se encarga de dibujar la ventana, capturar los datos del usuario
+y enviarlos al controlador, cumpliendo con el patrón MVC.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="vista.VistaApp">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">vista.</span></span><span class="sig-name descname"><span class="pre">VistaApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ventana_principal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controlador</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Clase principal de la interfaz gráfica de usuario construida con Tkinter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vista.VistaApp.actualizar_tabla">
+<span class="sig-name descname"><span class="pre">actualizar_tabla</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp.actualizar_tabla"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp.actualizar_tabla" title="Link to this definition"></a></dt>
+<dd><p>Pide los datos frescos al controlador y redibuja las filas en el Treeview.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vista.VistaApp.borrar_datos">
+<span class="sig-name descname"><span class="pre">borrar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp.borrar_datos"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp.borrar_datos" title="Link to this definition"></a></dt>
+<dd><p>Lógica para el botón Borrar (Baja de registro).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vista.VistaApp.crear_campo">
+<span class="sig-name descname"><span class="pre">crear_campo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fila</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp.crear_campo"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp.crear_campo" title="Link to this definition"></a></dt>
+<dd><p>Método auxiliar para generar etiquetas y campos de entrada</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>texto_label</strong> (<em>str</em>) – Texto que se mostrará al lado del campo.</p></li>
+<li><p><strong>variable</strong> (<em>tk.StringVar</em>) – Variable de Tkinter asociada al campo.</p></li>
+<li><p><strong>fila</strong> (<em>int</em>) – Fila del grid donde se posicionará.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vista.VistaApp.enviar_datos">
+<span class="sig-name descname"><span class="pre">enviar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp.enviar_datos"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp.enviar_datos" title="Link to this definition"></a></dt>
+<dd><p>Lógica para el botón Guardar (Alta de registro).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vista.VistaApp.limpiar_campos">
+<span class="sig-name descname"><span class="pre">limpiar_campos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp.limpiar_campos"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp.limpiar_campos" title="Link to this definition"></a></dt>
+<dd><p>Vacía todos los campos de texto del formulario y resetea opciones.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vista.VistaApp.manejar_respuesta">
+<span class="sig-name descname"><span class="pre">manejar_respuesta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">respuesta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp.manejar_respuesta"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp.manejar_respuesta" title="Link to this definition"></a></dt>
+<dd><p>Muestra un cuadro de diálogo basado en la respuesta del controlador.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>respuesta</strong> (<em>dict</em>) – Diccionario con el estado (“exito” o “error”) y el mensaje.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vista.VistaApp.modificar_datos">
+<span class="sig-name descname"><span class="pre">modificar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp.modificar_datos"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp.modificar_datos" title="Link to this definition"></a></dt>
+<dd><p>Lógica para el botón Modificar (Actualización de registro).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vista.VistaApp.obtener_datos_formulario">
+<span class="sig-name descname"><span class="pre">obtener_datos_formulario</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp.obtener_datos_formulario"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp.obtener_datos_formulario" title="Link to this definition"></a></dt>
+<dd><p>Extrae y convierte los datos capturados en las variables de Tkinter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tupla con los datos convertidos a su tipo correspondiente, o None si hay error.</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vista.VistaApp.seleccionar_fila">
+<span class="sig-name descname"><span class="pre">seleccionar_fila</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vista.html#VistaApp.seleccionar_fila"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#vista.VistaApp.seleccionar_fila" title="Link to this definition"></a></dt>
+<dd><p>Evento que se dispara al hacer clic en una fila del Treeview.
+Carga el Código (ID Único) en el formulario para facilitar su edición o borrado.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="validaciones.html" class="btn btn-neutral float-left" title="validaciones module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Joaquin Lucia.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

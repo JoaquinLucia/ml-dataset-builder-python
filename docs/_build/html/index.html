@@ -1,0 +1,181 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema ABMC — Gestión de Mercado Automotor &mdash; documentación de Sistema ABMC - Mercado Automotor - 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=36c4ab74"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=f85f4cfb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="conexion module" href="conexion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Sistema ABMC - Mercado Automotor
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="conexion.html">conexion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validaciones.html">validaciones module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Sistema ABMC - Mercado Automotor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sistema ABMC — Gestión de Mercado Automotor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sistema-abmc-gestion-de-mercado-automotor">
+<h1>Sistema ABMC — Gestión de Mercado Automotor<a class="headerlink" href="#sistema-abmc-gestion-de-mercado-automotor" title="Link to this heading"></a></h1>
+<p>Aplicación de escritorio en Python con arquitectura MVC para gestionar
+altas, bajas, modificaciones y consultas de vehículos sobre una base
+de datos SQLite.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="conexion.html">conexion module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="conexion.html#conexion.ConexionBD"><code class="docutils literal notranslate"><span class="pre">ConexionBD</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="conexion.html#conexion.ConexionBD.conectar"><code class="docutils literal notranslate"><span class="pre">ConexionBD.conectar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="conexion.html#conexion.ConexionBD.desconectar"><code class="docutils literal notranslate"><span class="pre">ConexionBD.desconectar()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controlador.html">controlador module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controlador.html#controlador.Controlador"><code class="docutils literal notranslate"><span class="pre">Controlador</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controlador.html#controlador.Controlador.procesar_alta"><code class="docutils literal notranslate"><span class="pre">Controlador.procesar_alta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="controlador.html#controlador.Controlador.procesar_baja"><code class="docutils literal notranslate"><span class="pre">Controlador.procesar_baja()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="controlador.html#controlador.Controlador.procesar_consulta"><code class="docutils literal notranslate"><span class="pre">Controlador.procesar_consulta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="controlador.html#controlador.Controlador.procesar_modificacion"><code class="docutils literal notranslate"><span class="pre">Controlador.procesar_modificacion()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.iniciar_app"><code class="docutils literal notranslate"><span class="pre">iniciar_app()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modelo.html">modelo module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modelo.html#modelo.GestorAutos"><code class="docutils literal notranslate"><span class="pre">GestorAutos</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modelo.html#modelo.GestorAutos.alta_auto"><code class="docutils literal notranslate"><span class="pre">GestorAutos.alta_auto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modelo.html#modelo.GestorAutos.borrar_auto"><code class="docutils literal notranslate"><span class="pre">GestorAutos.borrar_auto()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modelo.html#modelo.GestorAutos.consultar_autos"><code class="docutils literal notranslate"><span class="pre">GestorAutos.consultar_autos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modelo.html#modelo.GestorAutos.crear_tabla"><code class="docutils literal notranslate"><span class="pre">GestorAutos.crear_tabla()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modelo.html#modelo.GestorAutos.modificar_auto"><code class="docutils literal notranslate"><span class="pre">GestorAutos.modificar_auto()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="validaciones.html">validaciones module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="validaciones.html#validaciones.ErrorValidacion"><code class="docutils literal notranslate"><span class="pre">ErrorValidacion</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="validaciones.html#validaciones.Validador"><code class="docutils literal notranslate"><span class="pre">Validador</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="validaciones.html#validaciones.Validador.validar_anio"><code class="docutils literal notranslate"><span class="pre">Validador.validar_anio()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="validaciones.html#validaciones.Validador.validar_cilindrada"><code class="docutils literal notranslate"><span class="pre">Validador.validar_cilindrada()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="validaciones.html#validaciones.Validador.validar_positivos"><code class="docutils literal notranslate"><span class="pre">Validador.validar_positivos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="validaciones.html#validaciones.Validador.validar_titulo"><code class="docutils literal notranslate"><span class="pre">Validador.validar_titulo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="validaciones.html#validaciones.Validador.validar_valvulas"><code class="docutils literal notranslate"><span class="pre">Validador.validar_valvulas()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vista.html">vista module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vista.html#vista.VistaApp"><code class="docutils literal notranslate"><span class="pre">VistaApp</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vista.html#vista.VistaApp.actualizar_tabla"><code class="docutils literal notranslate"><span class="pre">VistaApp.actualizar_tabla()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vista.html#vista.VistaApp.borrar_datos"><code class="docutils literal notranslate"><span class="pre">VistaApp.borrar_datos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vista.html#vista.VistaApp.crear_campo"><code class="docutils literal notranslate"><span class="pre">VistaApp.crear_campo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vista.html#vista.VistaApp.enviar_datos"><code class="docutils literal notranslate"><span class="pre">VistaApp.enviar_datos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vista.html#vista.VistaApp.limpiar_campos"><code class="docutils literal notranslate"><span class="pre">VistaApp.limpiar_campos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vista.html#vista.VistaApp.manejar_respuesta"><code class="docutils literal notranslate"><span class="pre">VistaApp.manejar_respuesta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vista.html#vista.VistaApp.modificar_datos"><code class="docutils literal notranslate"><span class="pre">VistaApp.modificar_datos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vista.html#vista.VistaApp.obtener_datos_formulario"><code class="docutils literal notranslate"><span class="pre">VistaApp.obtener_datos_formulario()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vista.html#vista.VistaApp.seleccionar_fila"><code class="docutils literal notranslate"><span class="pre">VistaApp.seleccionar_fila()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="conexion.html" class="btn btn-neutral float-right" title="conexion module" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Joaquin Lucia.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
